@@ -5,14 +5,14 @@ chrome.action.onClicked.addListener((tab) => {
         target: { tabId: tab.id },
         func: contentScriptFunc,
         args: ['action'],
-    });
-});
+    })
+})
 
 function contentScriptFunc(name) {
-    var videos = document.querySelectorAll('video');
+    var videos = document.querySelectorAll('video')
     // Loop through video elements until the one that is playing is found
     for (var i = 0; i < videos.length; ++i) {
-        var video = document.querySelectorAll('video')[i];
+        var video = document.querySelectorAll('video')[i]
         // Find the currently-playing video
         if (!video.paused || (video.currentTime > 0)) {
             // Toggle PiP
@@ -22,15 +22,40 @@ function contentScriptFunc(name) {
                     video.removeAttribute('disablepictureinpicture')
                 }
                 // Request PiP
-                video.requestPictureInPicture();
+                video.requestPictureInPicture()
+                // setActionHandler() overrides any existing play or pause handlers, but there's not a way to detect if one has already been set
+                // So this checks if there is mediaSession metadata, because if there is, there's *probably* already an action handler
+                if (!navigator.mediaSession.metadata) {
+                    navigator.mediaSession.setActionHandler('play', function () {
+                        console.log('PiP Shortcut is attempting to play the video...')
+                        video.play()
+                    })
+                    navigator.mediaSession.setActionHandler('pause', function () {
+                        console.log('PiP Shortcut is attempting to pause the video...')
+                        video.pause()
+                    })
+                }
             } else {
-                document.exitPictureInPicture();
+                document.exitPictureInPicture()
             }
+            break
         }
     }
 }
 
 chrome.runtime.onInstalled.addListener(function () {
+    // Set message depending on OS
+    var notification = {
+        'type': 'basic',
+        'iconUrl': chrome.runtime.getURL('img/icon128.png'),
+        'title': 'Picture-in-Picture Shortcut installed!'
+    }
+    if (navigator.userAgentData.platform === 'macOS') {
+        notification.message = 'Press Command+Period to toggle PiP while a video is playing.'
+    } else {
+        notification.message = 'Press Ctrl+Period to toggle PiP while a video is playing.'
+    }
+    // Handle notification click
     handleNotif = function (id) {
         chrome.notifications.onClicked.addListener(function (id) {
             chrome.tabs.create({
@@ -38,11 +63,6 @@ chrome.runtime.onInstalled.addListener(function () {
             })
         })
     }
-    chrome.notifications.create({
-        'type': 'basic',
-        'iconUrl': chrome.runtime.getURL('img/icon128.png'),
-        'title': 'Picture-in-Picture Shortcut installed!',
-        // TODO: Say Command key for Mac users here, and see if it can programatically display the shortcut
-        'message': 'Press Ctrl+Period to toggle PiP while a video is playing, or click here to change the shortcut.'
-    }, handleNotif)
+    // Send notification
+    chrome.notifications.create(notification, handleNotif)
 })
