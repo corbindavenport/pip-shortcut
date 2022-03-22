@@ -48,7 +48,14 @@ chrome.runtime.onInstalled.addListener(function () {
     var notification = {
         'type': 'basic',
         'iconUrl': chrome.runtime.getURL('img/icon128.png'),
-        'title': 'Picture-in-Picture Shortcut installed!'
+        'title': 'Picture-in-Picture Shortcut installed!',
+        'buttons': [{
+            title: 'Change keyboard shortcut'
+        },
+        {
+            title: 'Join Discord'
+        }
+        ]
     }
     if (navigator.userAgentData.platform === 'macOS') {
         notification.message = 'Press Command+Period to toggle PiP while a video is playing.'
@@ -56,11 +63,17 @@ chrome.runtime.onInstalled.addListener(function () {
         notification.message = 'Press Ctrl+Period to toggle PiP while a video is playing.'
     }
     // Handle notification click
-    handleNotif = function (id) {
-        chrome.notifications.onClicked.addListener(function (id) {
-            chrome.tabs.create({
-                'url': 'chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut'
-            })
+    handleNotif = function () {
+        chrome.notifications.onButtonClicked.addListener(function (id, i) {
+            console.log(id, i)
+            if (i === 0) {
+                // Open settings button
+                chrome.tabs.create({
+                    'url': 'chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut'
+                })
+            } else if (i === 1) {
+                chrome.tabs.create({ url: 'https://discord.com/invite/59wfy5cNHw' })
+            }
         })
     }
     // Send notification
