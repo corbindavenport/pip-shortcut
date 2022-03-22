@@ -1,0 +1,20 @@
+{
+    "name": "Picture-in-Picture Shortcut",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["activeTab", "scripting", "notifications"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "icons": {
+		"48": "img/icon48.png",
+		"128": "img/icon128.png"
+	},
+    "action": {},
+    "commands": {
+      "_execute_action": {
+        "suggested_key":  "Ctrl+Period",
+        "description": "Open/Close Picture-in-Picture Mode"
+      }
+    }
+  }
