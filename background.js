@@ -56,7 +56,7 @@ chrome.runtime.onInstalled.addListener(() => {
         title: 'Picture-in-Picture Shortcut installed!',
         buttons: [
             {
-                title: 'Change keyboard shortcut'
+                title: 'Change shortcut'
             },
             {
                 title: 'Join Discord'
