@@ -1,18 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 16px;
+            max-width: 450px;
+        }
+
+        .link {
+            display: inline-block;
+            background: rgb(240, 240, 240);
+            padding: 5px;
+            max-width: calc(100% - 10px);
+            overflow-x: auto;
         }
     </style>
 </head>
+
 <body>
-    <p><b>Paste this into the address bar to change the shortcut:</b></p>
-    <pre>chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut</pre>
+    <div class="container-fluid">
+        <p><b>Paste this into the address bar to change the shortcut:</b></p>
+        <p class="link">chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut</p>
+        <p>If you find Picture-in-Picture Shortcut useful, please donate to support continued development. It would mean a lot!</p>
+        <div class="row mb-3">
+            <div class="col-6">
+                <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=4SZVSMJKDS35J&lc=US&item_name=Picture-in-Picture%20Shortcut%20Donation&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" target="_blank">
+                    <button type="button" class="btn btn-sm btn-success w-100">Donate via PayPal</button>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="https://www.patreon.com/corbindavenport" target="_blank">
+                    <button type="button" class="btn btn-sm btn-success w-100">Donate via Patreon</button>
+                </a>
+            </div>
+        </div>
+        <hr>
+        <a href="https://github.com/corbindavenport/pip-shortcut" target="_blank" class="d-block mb-3">
+            <button type="button" class="btn btn-sm btn-primary w-100">Open GitHub repository</button>
+        </a>
+        <a href="https://discord.com/invite/59wfy5cNHw" target="_blank" class="d-block mb-3">
+            <button type="button" class="btn btn-sm btn-primary w-100">Join Discord server</button>
+        </a>
+    </div>
 </body>
+
 </html>
