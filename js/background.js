@@ -48,6 +48,14 @@ chrome.action.onClicked.addListener((tab) => {
     });
 });
 
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        if (request.action === 'openShortcutPage') {
+            chrome.tabs.create({ url: 'chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut' });
+        }
+    }
+);
+
 chrome.runtime.onInstalled.addListener(() => {
     // Set message depending on OS
     const notification = {

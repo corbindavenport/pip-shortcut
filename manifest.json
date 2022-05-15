@@ -1,6 +1,6 @@
 {
   "name": "Picture-in-Picture Shortcut",
-  "version": "1.0",
+  "version": "1.1",
   "author": "Corbin Davenport",
   "description": "Switch videos to Picture-in-Picture mode with a keyboard shortcut or toolbar button.",
   "homepage_url": "https://github.com/corbindavenport/pip-shortcut",
@@ -15,7 +15,7 @@
     "open_in_tab": false
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "js/background.js"
   },
   "icons": {
     "48": "img/icon48.png",
