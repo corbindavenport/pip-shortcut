@@ -18,16 +18,24 @@
     "service_worker": "js/background.js"
   },
   "icons": {
-    "48": "img/icon48.png",
-    "128": "img/icon128.png"
+    "32": "img/icon_x32.png",
+    "48": "img/icon_x48.png",
+    "128": "img/icon_x128.png"
   },
-  "action": {},
+  "action": {
+    "default_icon": {
+      "32": "img/icon_x32.png",
+      "48": "img/icon_action_x48.png",
+      "128": "img/icon_action_x128.png"
+    },
+    "default_title": "Toggle Picture-in-Picture Mode"
+  },
   "commands": {
     "_execute_action": {
       "suggested_key": {
         "default": "Ctrl+Period"
       },
-      "description": "Open/Close Picture-in-Picture Mode"
+      "description": "Toggle Picture-in-Picture Mode"
     }
   }
 }

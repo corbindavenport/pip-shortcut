@@ -62,19 +62,17 @@ chrome.runtime.onInstalled.addListener(async (details) => {
         const commands = await chrome.commands.getAll();
         const shortcutCommand = commands[0].shortcut;
         // Set notification
-        // Set notification
+        const manifestVersion = chrome.runtime.getManifest().version;
         const notification = {
             type: 'basic',
-            iconUrl: chrome.runtime.getURL('img/icon128.png'),
-            title: 'Picture-in-Picture Shortcut installed!',
+            iconUrl: chrome.runtime.getURL('img/icon_x128.png'),
+            title: `PiP Shortcut ${manifestVersion} installed!`,
             buttons: [
                 { title: 'Change shortcut' },
                 { title: 'Join Discord' }
             ],
             message: `Press ${shortcutCommand} to toggle Picture-in-Picture while a video is playing.`
         };
-
-
         // Send notification
         chrome.notifications.create(notification, () => {
             // Handle notification click
