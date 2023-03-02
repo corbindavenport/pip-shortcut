@@ -2,7 +2,6 @@
 
 const contentScriptFunc = () => {
     const videos = document.querySelectorAll('video');
-
     // Loop through video elements until the one that is playing is found
     for (const video of videos) {
         // Find the currently-playing video
@@ -56,36 +55,38 @@ chrome.runtime.onMessage.addListener(
     }
 );
 
-chrome.runtime.onInstalled.addListener(() => {
-    // Set message depending on OS
-    const notification = {
-        type: 'basic',
-        iconUrl: chrome.runtime.getURL('img/icon128.png'),
-        title: 'Picture-in-Picture Shortcut installed!',
-        buttons: [
-            {
-                title: 'Change shortcut'
-            },
-            {
-                title: 'Join Discord'
-            }
-        ],
-        message: navigator.userAgentData.platform === 'macOS'
-            ? 'Press Command+Period to toggle PiP while a video is playing.'
-            : 'Press Ctrl+Period to toggle PiP while a video is playing.',
-    };
+chrome.runtime.onInstalled.addListener(async (details) => {
+    // Show welcome message
+    if (details.reason === 'install' || details.reason === 'update') {
+        // Get current shortcut
+        const commands = await chrome.commands.getAll();
+        const shortcutCommand = commands[0].shortcut;
+        // Set notification
+        // Set notification
+        const notification = {
+            type: 'basic',
+            iconUrl: chrome.runtime.getURL('img/icon128.png'),
+            title: 'Picture-in-Picture Shortcut installed!',
+            buttons: [
+                { title: 'Change shortcut' },
+                { title: 'Join Discord' }
+            ],
+            message: `Press ${shortcutCommand} to toggle Picture-in-Picture while a video is playing.`
+        };
 
-    // Send notification
-    chrome.notifications.create(notification, () => {
-        // Handle notification click
-        chrome.notifications.onButtonClicked.addListener((_, buttonIndex) => {
-            if (buttonIndex === 0) {
-                // Open settings button
-                chrome.tabs.create({ url: 'chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut' });
-            } else if (buttonIndex === 1) {
-                // Open Discord
-                chrome.tabs.create({ url: 'https://discord.com/invite/59wfy5cNHw' });
-            }
+
+        // Send notification
+        chrome.notifications.create(notification, () => {
+            // Handle notification click
+            chrome.notifications.onButtonClicked.addListener((_, buttonIndex) => {
+                if (buttonIndex === 0) {
+                    // Open settings button
+                    chrome.tabs.create({ url: 'chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut' });
+                } else if (buttonIndex === 1) {
+                    // Open Discord
+                    chrome.tabs.create({ url: 'https://discord.com/invite/59wfy5cNHw' });
+                }
+            });
         });
-    });
+    };
 });

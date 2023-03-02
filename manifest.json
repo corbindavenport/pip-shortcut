@@ -1,6 +1,6 @@
 {
   "name": "Picture-in-Picture Shortcut",
-  "version": "1.1",
+  "version": "1.2",
   "author": "Corbin Davenport",
   "description": "Switch videos to Picture-in-Picture mode with a keyboard shortcut or toolbar button.",
   "homepage_url": "https://github.com/corbindavenport/pip-shortcut",
@@ -24,7 +24,9 @@
   "action": {},
   "commands": {
     "_execute_action": {
-      "suggested_key": "Ctrl+Period",
+      "suggested_key": {
+        "default": "Ctrl+Period"
+      },
       "description": "Open/Close Picture-in-Picture Mode"
     }
   }
