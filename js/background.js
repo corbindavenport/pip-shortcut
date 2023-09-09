@@ -58,33 +58,6 @@ chrome.runtime.onMessage.addListener(
 chrome.runtime.onInstalled.addListener(async (details) => {
     // Show welcome message
     if (details.reason === 'install' || details.reason === 'update') {
-        // Get current shortcut
-        const commands = await chrome.commands.getAll();
-        const shortcutCommand = commands[0].shortcut;
-        // Set notification
-        const manifestVersion = chrome.runtime.getManifest().version;
-        const notification = {
-            type: 'basic',
-            iconUrl: chrome.runtime.getURL('img/icon_x128.png'),
-            title: `PiP Shortcut ${manifestVersion} installed!`,
-            buttons: [
-                { title: 'Change shortcut' },
-                { title: 'Join Discord' }
-            ],
-            message: `Press ${shortcutCommand} to toggle Picture-in-Picture while a video is playing.`
-        };
-        // Send notification
-        chrome.notifications.create(notification, () => {
-            // Handle notification click
-            chrome.notifications.onButtonClicked.addListener((_, buttonIndex) => {
-                if (buttonIndex === 0) {
-                    // Open settings button
-                    chrome.tabs.create({ url: 'chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut' });
-                } else if (buttonIndex === 1) {
-                    // Open Discord
-                    chrome.tabs.create({ url: 'https://discord.com/invite/59wfy5cNHw' });
-                }
-            });
-        });
+        chrome.tabs.create({ 'url': chrome.runtime.getURL('main.html') });
     };
 });

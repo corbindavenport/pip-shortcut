@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="img/icon_x32.png">
+	<title>Picture-in-Picture Shortcut</title>
+	<link href="css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Header -->
+	<div class="container-fluid bg-light mb-5">
+		<div class="container bg-light py-5">
+			<div class="row">
+				<div class="col-9">
+					<h1 class="display-5 fw-bold">Picture-in-Picture Shortcut <span id="version"></span> is now installed!</h1>
+					<p>This update redesigns the settings menu, fixes a few bugs, improves support for Calckey and Misskey, and other changes. Check out the <a href="https://github.com/corbindavenport/pip-shortcut/releases/latest" target="_blank">full changelog</a> for more details.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Main container -->
+	<div class="container">
+		<!-- Info and donation -->
+		<div class="row">
+			<div class="col-md-8">
+				<h2>Keyboard shortcut</h2>
+				<p>The current keyboard shortcut for Picture-in-Picture mode is currently <span class="fw-bold" id="shortcut"></span> and can be changed from your browser's settings.</p>
+				<div class="mt-4 mb-4">
+					<button type="button" class="btn btn-primary w-100" id="keyboard-shortcut-btn">Change keyboard shortcut</button>
+					<div class="collapse mt-1" id="firefoxShortcutCollapse">
+						<div class="card card-body">
+							Open about:addons in a new tab, click the settings gear button, then select "Manage extension shortcuts."
+						</div>
+					</div>
+				</div>
+				<h2>How to use this extension</h2>
+				<p>Picture-in-Picture Shortcut adds a keyboard shortcut and toolbar button for switching video players to the <a href="https://developers.google.com/web/updates/2018/10/watch-video-using-picture-in-picture" target="_blank">Picture-in-Picture mode</a> in your web browser. The Picture-in-Picture Shortcut extension button in the browser's toolbar can be used to toggle PiP mode.</p>
+				<p>Picture-in-Picture Shortcut also overrides sites that don't normally allow Picture-in-Picture mode, and attempts to add a play/pause button to the PiP popup. However, this may not always work for sites and players not originally built for PiP mode.</p>
+			</div>
+			<div class="col-md-4">
+				<h2>Donate</h2>
+				<p>If you find this extension useful, please donate to support continued development. It would mean a lot!</p>
+				<a href="https://www.patreon.com/corbindavenport" target="_blank">
+					<button type="button" class="btn btn-success w-100 mb-3">Support via Patreon</button>
+				</a>
+				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=4SZVSMJKDS35J&lc=US&item_name=Picture-in-Picture%20Shortcut%20Donation&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" target="_blank">
+					<button type="button" class="btn btn-success w-100 mb-3">Donate via PayPal</button>
+				</a>
+				<a href="https://cash.app/$corbdav" target="_blank">
+					<button type="button" class="btn btn-success w-100 mb-3">Donate via Cash App</button>
+				</a>
+				<p>Picture-in-Picture Shortcut is developed by <a href="https://corbin.io/?utm_source=Picture-in-Picture%20Shortcut%20Extension">Corbin Davenport</a>.</p>
+				<h2>Need help?</h2>
+				<p>If something isn't working, or if you just want to chat with other Picture-in-Picture Shortcut users, <a href="https://github.com/corbindavenport/pip-shortcut/issues" target="_blank">create an issue on GitHub</a> or <a href="https://discord.com/invite/59wfy5cNHw" target="_blank">join the Discord server</a>.</p>
+			</div>
+		</div>
+		<!-- Footer -->
+		<div class="row">
+			<div class="bg-light rounded-3 pt-3 pb-3 mt-5 mb-5">
+				Share to Mastodon uses code from <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>. You can find the source code <a href="https://github.com/corbindavenport/share-to-mastodon" target="_blank">on GitHub</a>, under the GPL license.</div>
+		</div>
+	</div>
+
+	<script src="js/bootstrap.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>
