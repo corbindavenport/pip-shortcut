@@ -1,5 +1,3 @@
-// Documentation: https://developer.chrome.com/docs/extensions/reference/commands
-
 const contentScriptFunc = () => {
     const videos = document.querySelectorAll('video');
     // Loop through video elements until the one that is playing is found
@@ -44,16 +42,9 @@ chrome.action.onClicked.addListener((tab) => {
             tabId: tab.id
         },
         func: contentScriptFunc,
+        injectImmediately: true
     });
 });
-
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        if (request.action === 'openShortcutPage') {
-            chrome.tabs.create({ url: 'chrome://extensions/shortcuts#:~:text=Picture%2Din%2DPicture%20Shortcut' });
-        }
-    }
-);
 
 chrome.runtime.onInstalled.addListener(async (details) => {
     // Show welcome message
