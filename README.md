@@ -6,4 +6,6 @@ Google Chrome and other Chromium browsers have a built-in Picture-in-Picture but
 
 **[Download for Google Chrome](https://chrome.google.com/webstore/detail/ednlokepbjfieampgfdabeglnceoheni)**
 
+**[Download for Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/mmgmhaokamemfnkmfdhnkkjmpbfmlpck)**
+
 ![Screenshot of extension in Google Chrome](https://i.imgur.com/ys8BDBL.png)
